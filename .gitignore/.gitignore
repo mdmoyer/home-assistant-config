@@ -1,0 +1,7 @@
+*.conf
+*.db
+*.log
+__pycache__
+entity_registry.yaml
+known_devices.yaml
+secrets.yaml
