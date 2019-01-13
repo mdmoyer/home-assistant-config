@@ -1,0 +1,23 @@
+thermostat:
+  name: Nest Thermostat
+  view: no
+  entities:
+    - sensor.dining_room_thermostat_nest_humidity
+    - sensor.dining_room_thermostat_nest_hvac_state
+    - sensor.dining_room_thermostat_nest_operation_mode
+    - sensor.dining_room_thermostat_nest_target
+    - sensor.dining_room_thermostat_nest_temperature
+    - binary_sensor.dining_room_thermostat_nest_fan
+    - binary_sensor.dining_room_thermostat_nest_has_leaf
+    - binary_sensor.dining_room_thermostat_nest_is_locked
+    - binary_sensor.dining_room_thermostat_nest_is_using_emergency_heat
+    - binary_sensor.dining_room_thermostat_nest_online
+
+sensor_node_1_card:
+  name: Sensor Node 1
+  entities:
+    - sensor.sn1_temperature
+    - sensor.sn1_humidity
+    - sensor.sn1_ldr
+    - sensor.sn1_pir
+    - light.sn1_led

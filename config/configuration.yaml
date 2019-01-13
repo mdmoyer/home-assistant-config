@@ -1,0 +1,178 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret home_name
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret home_timezone
+  # Customization file
+  # customize: !include customize.yaml
+
+# Enable Lovelace YAML configuration
+lovelace:
+  mode: yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Enable logging
+logger:
+
+http:
+  api_password: !secret hassio_api_password
+  base_url: !secret http_base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - alerts
+      - temp_f
+  - platform: darksky
+    api_key: !secret dark_sky_api_key
+    update_interval: 120
+    monitored_conditions:
+     - summary
+     - icon
+     - nearest_storm_distance
+     - precip_type
+     - precip_intensity
+     - precip_probability
+     - temperature
+     - apparent_temperature
+     - dew_point
+     - wind_speed
+     - wind_bearing
+     - cloud_cover
+     - humidity
+     - pressure
+     - visibility
+     - ozone
+     - minutely_summary
+     - hourly_summary
+     - daily_summary
+
+  # Entries for multisensor SensorNode1
+  - platform: mqtt
+    state_topic: !secret sensornode1_name
+    name: "SN1 Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.humidity | round(1) }}'
+  - platform: mqtt
+    state_topic: !secret sensornode1_name
+    name: "SN1 LDR"
+    # This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"
+    value_template: '{{ value_json.ldr }}'
+  - platform: mqtt
+    state_topic: !secret sensornode1_name
+    name: "SN1 Motion"
+    value_template: '{{ value_json.motion }}'
+  - platform: mqtt
+    state_topic: !secret sensornode1_name
+    name: "SN1 Temperature"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: !secret sensornode1_name
+    name: "SN1 Real Feel"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+# Nest
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+# Chamberlain MyQ
+cover:
+  - platform: myq
+    username: !secret myq_cover_username
+    password: !secret myq_cover_password
+    type: chamberlain
+
+# Example configuration.yaml entry
+device_tracker:
+  - platform: ddwrt
+    host: !secret router_ip
+    port: 8080
+    username: !secret ddwrt_username
+    password: !secret ddwrt_password
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+
+camera:
+  - platform: synology
+    url: !secret nas_url
+    username: !secret nas_username
+    password: !secret nas_password
+    timeout: 15
+    verify_ssl: False
+
+history_graph:
+  temp_graph:
+    name: Temperature
+    entities:
+      - sensor.sn1_temperature
+      - sensor.dining_room_thermostat_nest_temperature
+      - sensor.dining_room_thermostat_nest_target
+    hours_to_show: 24
+    refresh: 60
+
+mqtt:
+  broker: !secret mqtt_broker_ip
+  port: 1883
+  client_id: hassio-mqtt
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+group: !include groups.yaml

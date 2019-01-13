@@ -1,0 +1,18 @@
+---
+util:
+  module: util
+  class: Util
+
+lights_schedule:
+  module: lights_schedule
+  class: LightsSchedule
+
+temp_control:
+  module: temp_control
+  class: TempControl
+  constrain_start_time: "23:15:00"
+  constrain_end_time: "07:00:00"
+  min_temp: 65
+  max_temp: 70
+  # The temperature sensor to use to control temperature.
+  sensor_temp: self.entities.sensor.sn1_temperature

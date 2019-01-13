@@ -1,0 +1,87 @@
+title: !secret home_name
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - weblink.router
+views:
+    # View tab title.
+  - icon: mdi:home-assistant
+    # Optional unique id for direct access /lovelace/${id}
+    id: example
+    # Each view can have a different theme applied.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+        # The filter card will filter entities for their state
+      - type: entity-filter
+        entities:
+          - device_tracker.mmphone
+          - device_tracker.nlphone
+        state_filter:
+          - 'home'
+        card_config:
+          type: glance
+          title: Whereabouts
+      - type: entities
+        entities:
+          - light.living_room
+          - light.back_hall
+          - light.hue_master_bedroom
+          - light.master_bedroom_ceiling
+
+  - icon: mdi:thermometer
+    title: Climate
+    cards:
+      - type: entities
+        entities:
+          - entity: climate.dining_room_nest
+            name: Thermostat
+          - entity: sensor.sn1_temperature
+            name: Bedroom
+      - type: history-graph
+        title: 'Temperature'
+        entities:
+          - sensor.sn1_temperature
+          - sensor.dining_room_thermostat_nest_temperature
+          - sensor.dining_room_thermostat_nest_hvac_state
+        hours_to_show: 24
+        refresh: 60
+
+  - icon: mdi:lock-open
+    title: Security
+    cards:
+      - type: picture-entity
+        entity: camera.indoorcam1
+      - type: picture-entity
+        entity: camera.indoorcam2
+      - type: entities
+        entities:
+          - entity: cover.garage_door_opener
+            secondary_info: last-changed
+      - type: history-graph
+        title: 'Motion'
+        entities:
+          - sensor.sn1_motion
+          - cover.garage_door_opener
+        hours_to_show: 24
+        refresh: 60
+
+  - icon: mdi:television-classic
+    title: Media
+    cards:
+      - type: entities
+        entities:
+          - media_player.apple_tv
+          - media_player.chromecast
+          - media_player.roku_1gg34l040160
+          - media_player.ubpx800
+          - media_player.xbr75x900e
+      - type: history-graph
+        title: 'Media History'
+        entities:
+          - media_player.apple_tv
+          - media_player.chromecast
+          - media_player.roku_1gg34l040160
+          - media_player.ubpx800
+          - media_player.xbr75x900e
+        hours_to_show: 24
+        refresh: 60
