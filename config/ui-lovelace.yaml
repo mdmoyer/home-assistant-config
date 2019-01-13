@@ -72,7 +72,8 @@ views:
         entities:
           - media_player.apple_tv
           - media_player.chromecast
-          - media_player.roku_1gg34l040160
+          - media_player.roku_player
+          - media_player.roku_streaming_stick
           - media_player.ubpx800
           - media_player.xbr75x900e
       - type: history-graph
@@ -80,7 +81,8 @@ views:
         entities:
           - media_player.apple_tv
           - media_player.chromecast
-          - media_player.roku_1gg34l040160
+          - media_player.roku_player
+          - media_player.roku_streaming_stick
           - media_player.ubpx800
           - media_player.xbr75x900e
         hours_to_show: 24
