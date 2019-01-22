@@ -53,6 +53,13 @@ views:
           - sensor.dining_room_thermostat_nest_hvac_state
         hours_to_show: 24
         refresh: 60
+      - type: history-graph
+        title: 'Humidity'
+        entities:
+          - sensor.sn1_humidity
+          - sensor.dining_room_thermostat_nest_humidity
+        hours_to_show: 24
+        refresh: 60
 
   - icon: mdi:lock-open
     title: Security
