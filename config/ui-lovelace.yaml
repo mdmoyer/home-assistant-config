@@ -21,12 +21,20 @@ views:
         card_config:
           type: glance
           title: Whereabouts
+      - type: history-graph
+        title: 'Presence'
+        entities:
+          - device_tracker.mmphone
+          - device_tracker.nlphone
+        hours_to_show: 24
+        refresh: 60
       - type: entities
         entities:
           - light.living_room
           - light.back_hall
           - light.hue_master_bedroom
           - light.master_bedroom_ceiling
+
 
   - icon: mdi:thermometer
     title: Climate
