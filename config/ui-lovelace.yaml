@@ -61,6 +61,65 @@ views:
         hours_to_show: 24
         refresh: 60
 
+  - icon: mdi:floor-plan
+    title: Floor Plan
+    cards:
+      - type: picture-elements
+        title: '1st Floor'
+        image: /local/floorplan-main.svg
+        elements:
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.back_hall
+            style:
+              top: 28.4%
+              left: 18.5%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.back_hall
+            style:
+              top: 40.7%
+              left: 20.6%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.living_room
+            style:
+              top: 10.4%
+              left: 28.3%
+          - type: state-label
+            entity: sensor.dining_room_thermostat_nest_temperature
+            style:
+              top: 56%
+              left: 61%
+              color: blue
+              font-size: 14pt
+              font-weight: bold
+          - type: image
+            image: /local/red.png
+            entity: cover.garage_door_opener
+            style:
+              top: 50%
+              left: 50%
+              width: 10%
+              height: 1%
+            state_filter:
+              "open": opacity(100%)
+              "closed": opacity(0%)
+          - type: image
+            image: /local/green.png
+            entity: cover.garage_door_opener
+            style:
+              top: 50%
+              left: 50%
+              width: 10%
+              height: 1%
+            state_filter:
+              "open": opacity(0%)
+              "closed": opacity(100%)
+
   - icon: mdi:lock-open
     title: Security
     cards:
