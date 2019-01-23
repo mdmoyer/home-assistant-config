@@ -17,9 +17,6 @@ homeassistant:
 lovelace:
   mode: yaml
 
-# Show links to resources in log and frontend
-introduction:
-
 # Enables the frontend
 frontend:
 
