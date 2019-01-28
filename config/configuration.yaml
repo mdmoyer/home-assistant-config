@@ -115,6 +115,19 @@ sensor:
     name: "SN1 Real Feel"
     unit_of_measurement: "°F"
     value_template: '{{ value_json.heatIndex | round(1) }}'
+  - platform: fitbit
+    clock_format: 12H
+    monitored_resources:
+      - "body/weight"
+      - "activities/steps"
+      - "activities/floors"
+      - "activities/distance"
+      - "activities/calories"
+      - "activities/minutesLightlyActive"
+      - "body/bmi"
+      - "body/fat"
+      - "devices/battery"
+      - "activities/heart"
 
 # Text to speech
 tts:

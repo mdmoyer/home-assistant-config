@@ -2,6 +2,11 @@ title: !secret home_name
 # Exclude entities from "Unused entities" view
 excluded_entities:
   - weblink.router
+  
+resources:
+  - url: /local/circle-sensor-card.js?v=1
+    type: module
+
 views:
     # View tab title.
   - icon: mdi:home-assistant
@@ -161,3 +166,8 @@ views:
           - media_player.xbr75x900e
         hours_to_show: 24
         refresh: 60
+  
+  - icon: mdi:run
+    title: Fitness
+    cards: 
+    - !include lovelace/fitbit.yaml
