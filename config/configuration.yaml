@@ -57,6 +57,15 @@ map:
 # Track the sun
 sun:
 
+binary_sensor:
+  - platform: mqtt
+    name: "Laundry Room Door"
+    state_topic: "smartthings/Laundry Room Door Sensor/contact/state"
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: door
+    retain: true
+
 # Weather prediction
 sensor:
   - platform: yr
@@ -179,10 +188,12 @@ history_graph:
     refresh: 60
 
 mqtt:
-  broker: !secret mqtt_broker_ip
+  broker: localhost
   port: 1883
   client_id: hassio-mqtt
   username: !secret mqtt_username
   password: !secret mqtt_password
-
+  discovery: true
+  discovery_prefix: smartthings
+  
 group: !include groups.yaml
