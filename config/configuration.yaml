@@ -26,6 +26,10 @@ config:
 # Enable logging
 logger:
 
+# Database options
+recorder:
+  db_url: !secret mariadb_url
+
 http:
   api_password: !secret hassio_api_password
   base_url: !secret http_base_url
