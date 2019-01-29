@@ -32,7 +32,7 @@ views:
           - device_tracker.mmphone
           - device_tracker.nlphone
         hours_to_show: 24
-        refresh: 60
+        refresh_interval: 60
       - type: entities
         entities:
           - light.living_room
@@ -57,14 +57,14 @@ views:
           - sensor.dining_room_thermostat_nest_temperature
           - sensor.dining_room_thermostat_nest_hvac_state
         hours_to_show: 24
-        refresh: 60
+        refresh_interval: 60
       - type: history-graph
         title: 'Humidity'
         entities:
           - sensor.sn1_humidity
           - sensor.dining_room_thermostat_nest_humidity
         hours_to_show: 24
-        refresh: 60
+        refresh_interval: 60
 
   - icon: mdi:floor-plan
     title: Floor Plan
@@ -142,7 +142,7 @@ views:
           - sensor.sn1_motion
           - cover.garage_door_opener
         hours_to_show: 24
-        refresh: 60
+        refresh_interval: 60
 
   - icon: mdi:television-classic
     title: Media
@@ -165,7 +165,7 @@ views:
           - media_player.ubpx800
           - media_player.xbr75x900e
         hours_to_show: 24
-        refresh: 60
+        refresh_interval: 60
   
   - icon: mdi:run
     title: Fitness
