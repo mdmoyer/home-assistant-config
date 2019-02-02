@@ -1,3 +1,9 @@
+###############################
+#
+#  Basic Info and Configuration
+#
+###############################
+
 homeassistant:
   # Name of the location where Home Assistant is running
   name: !secret home_name
@@ -13,26 +19,26 @@ homeassistant:
   # Customization file
   # customize: !include customize.yaml
 
-# Enable Lovelace YAML configuration
-lovelace:
-  mode: yaml
-
-# Enables the frontend
-frontend:
-
-# Enables configuration UI
-config:
-
-# Enable logging
-logger:
-
 # Database options
 recorder:
   db_url: !secret mariadb_url
 
+# HTTP options
 http:
-  api_password: !secret hassio_api_password
   base_url: !secret http_base_url
+
+# Enable logging
+logger:
+
+# Enables Home Assistant configuration GUI (integrations, users, server, etc.)
+config:
+
+# Enables the frontend
+frontend:
+
+# Enable Lovelace YAML configuration
+lovelace:
+  mode: yaml
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -54,6 +60,12 @@ history:
 
 # View all events in a logbook
 logbook:
+
+#########################
+#
+#  Components and Sensors
+#
+#########################
 
 # Enables a map showing the location of tracked devices
 map:
@@ -181,16 +193,6 @@ camera:
     timeout: 15
     verify_ssl: False
 
-history_graph:
-  temp_graph:
-    name: Temperature
-    entities:
-      - sensor.sn1_temperature
-      - sensor.dining_room_thermostat_nest_temperature
-      - sensor.dining_room_thermostat_nest_target
-    hours_to_show: 24
-    refresh: 60
-
 mqtt:
   broker: localhost
   port: 1883
@@ -199,5 +201,5 @@ mqtt:
   password: !secret mqtt_password
   discovery: true
   discovery_prefix: smartthings
-  
+
 group: !include groups.yaml
