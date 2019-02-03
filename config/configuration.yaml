@@ -81,6 +81,13 @@ binary_sensor:
     payload_off: "closed"
     device_class: door
     retain: true
+  - platform: mqtt
+    name: "Utility Room Door"
+    state_topic: "smartthings/Utility Room Door Sensor/contact/state"
+    payload_on: "open"
+    payload_off: "closed"
+    device_class: door
+    retain: true
 
 # Weather prediction
 sensor:
