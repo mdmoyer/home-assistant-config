@@ -80,14 +80,14 @@ views:
             entity: climate.dining_room_nest
             hvac_state: sensor.dining_room_thermostat_nest_hvac_state
             style:
-              top: 57%
-              left: 59%
+              top: 60.68%
+              left: 55.19%
           # Cameras
           - type: state-icon
             entity: camera.indoorcam1
             style:
-              top: 90.4%
-              left: 72.7%
+              top: 91.33%
+              left: 72.47%
           - type: state-icon
             entity: camera.indoorcam2
             style:
@@ -99,22 +99,22 @@ views:
               action: toggle
             entity: light.back_hall
             style:
-              top: 28.4%
-              left: 18.5%
+              top: 30.04%
+              left: 18.40%
           - type: state-icon
             tap_action:
               action: toggle
             entity: light.back_hall
             style:
-              top: 40.7%
-              left: 20.6%
+              top: 42.05%
+              left: 20.49%
           - type: state-icon
             tap_action:
               action: toggle
             entity: light.living_room
             style:
-              top: 10.4%
-              left: 28.3%
+              top: 12.40%
+              left: 28.15%
           # Doors
           - type: image
             image: /local/red.png
@@ -142,29 +142,29 @@ views:
           - type: icon # Dining Room
             icon: mdi:lightbulb
             style:
-              top: 48.8%
-              left: 73.2%
+              top: 49.43%
+              left: 72.84%
               color: gray
               opacity: 0.5
           - type: icon # Living Room North
             icon: mdi:lightbulb
             style:
-              top: 22.2%
-              left: 83.2%
+              top: 23.95%
+              left: 82.22%
               color: gray
               opacity: 0.5
           - type: icon # Living Room Southeast
             icon: mdi:lightbulb
             style:
-              top: 34.6%
-              left: 28.3%
+              top: 36.09%
+              left: 28.15%
               color: gray
               opacity: 0.5
           - type: icon # Kitchen
             icon: mdi:lightbulb
             style:
-              top: 73%
-              left: 73.2%
+              top: 73.62%
+              left: 72.84%
               color: gray
               opacity: 0.5
 
