@@ -167,6 +167,25 @@ views:
               left: 72.84%
               color: gray
               opacity: 0.5
+      - type: picture-elements
+        # title: 'Basement'
+        image: /local/floorplan-basement.svg
+        elements:
+          # Lights
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.laundry_room
+            style:
+              top: 20.59%
+              left: 14.44%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.laundry_room
+            style:
+              top: 29.10%
+              left: 14.44%
 
   - icon: mdi:lock-open
     title: Security
