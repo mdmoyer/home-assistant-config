@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=12
+  - url: /local/thermostat-element.js?v=14
     type: module
 
 views:
@@ -186,6 +186,25 @@ views:
             style:
               top: 29.10%
               left: 14.44%
+      - type: picture-elements
+        # title: 'Upstairs'
+        image: /local/floorplan-upstairs.svg
+        elements:
+          # Lights
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.hue_master_bedroom
+            style:
+              top: 35.59%
+              left: 43.09%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.master_bedroom_ceiling
+            style:
+              top: 24.16%
+              left: 58.02%
 
   - icon: mdi:lock-open
     title: Security
