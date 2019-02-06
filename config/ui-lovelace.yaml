@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=1
+  - url: /local/thermostat-element.js?v=12
     type: module
 
 views:
