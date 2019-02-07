@@ -73,22 +73,6 @@ map:
 # Track the sun
 sun:
 
-binary_sensor:
-  - platform: mqtt
-    name: "Laundry Room Door"
-    state_topic: "smartthings/Laundry Room Door Sensor/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: door
-    retain: true
-  - platform: mqtt
-    name: "Utility Room Door"
-    state_topic: "smartthings/Utility Room Door Sensor/contact/state"
-    payload_on: "open"
-    payload_off: "closed"
-    device_class: door
-    retain: true
-
 # Weather prediction
 sensor:
   - platform: yr
@@ -180,7 +164,6 @@ cover:
     password: !secret myq_cover_password
     type: chamberlain
 
-# Example configuration.yaml entry
 device_tracker:
   - platform: ddwrt
     host: !secret router_ip
@@ -207,6 +190,5 @@ mqtt:
   username: !secret mqtt_username
   password: !secret mqtt_password
   discovery: true
-  discovery_prefix: smartthings
 
 group: !include groups.yaml

@@ -43,6 +43,7 @@ views:
           - light.master_bedroom_ceiling
           - light.laundry_room
           - binary_sensor.laundry_room_door
+          - binary_sensor.utility_room_door
 
   - icon: mdi:thermometer
     title: Climate
