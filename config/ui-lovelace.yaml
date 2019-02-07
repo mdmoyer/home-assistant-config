@@ -82,11 +82,22 @@ views:
             style:
               top: 60.68%
               left: 55.19%
+          # Device Trackers
+          - type: state-icon
+            entity: device_tracker.mmphone
+            style:
+              top: 21.15%
+              left: 30.86%
+          - type: state-icon
+            entity: device_tracker.nlphone
+            style:
+              top: 28.52%
+              left: 30.86%
           # Cameras
           - type: state-icon
             entity: camera.indoorcam1
             style:
-              top: 91.33%
+              top: 95.32%
               left: 72.47%
           - type: state-icon
             entity: camera.indoorcam2
@@ -138,6 +149,14 @@ views:
             state_filter:
               "open": opacity(0%)
               "closed": opacity(100%)
+          # Media Players
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: media_player.apple_tv
+            style:
+              top: 13.31%
+              left: 85.19%
           # Inactive
           - type: icon # Dining Room
             icon: mdi:lightbulb
@@ -205,6 +224,14 @@ views:
             style:
               top: 24.16%
               left: 58.02%
+          # Media Players
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: media_player.chromecast
+            style:
+              top: 13.31%
+              left: 85.19%
 
   - icon: mdi:lock-open
     title: Security
