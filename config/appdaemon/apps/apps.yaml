@@ -21,7 +21,7 @@ laundry_room_light:
   module: door_activated_light
   class: DoorActivatedLight
   light: light.laundry_room
-  door_sensor: binary_sensor.laundry_room_door
+  door_sensor: binary_sensor.laundry_room_door_sensor_contact
   # How long to leave the light on before turning it off automatically, in seconds.
   delay: 1800
 
@@ -29,6 +29,6 @@ uility_room_light:
   module: door_activated_light
   class: DoorActivatedLight
   light: light.utility_room
-  door_sensor: binary_sensor.utility_room_door
+  door_sensor: binary_sensor.utility_room_door_sensor_contact
   # How long to leave the light on before turning it off automatically, in seconds.
   delay: 1800
