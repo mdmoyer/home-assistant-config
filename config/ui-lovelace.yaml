@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=14
+  - url: /local/thermostat-element.js?v=46
     type: module
 
 views:
@@ -87,13 +87,13 @@ views:
           - type: state-icon
             entity: device_tracker.mmphone
             style:
-              top: 21.15%
-              left: 30.86%
+              top: 20.26%
+              left: 31.73%
           - type: state-icon
             entity: device_tracker.nlphone
             style:
-              top: 28.52%
-              left: 30.86%
+              top: 28.26%
+              left: 31.73%
           # Cameras
           - type: state-icon
             entity: camera.indoorcam1
@@ -132,10 +132,10 @@ views:
             image: /local/red.png
             entity: cover.garage_door_opener
             style:
-              top: 98.6%
+              top: 98.63%
               left: 21%
-              width: 10%
-              height: 1.2%
+              width: 25%
+              height: 1.22%
             state_filter:
               "open": opacity(100%)
               "closed": opacity(0%)
@@ -143,17 +143,17 @@ views:
             image: /local/green.png
             entity: cover.garage_door_opener
             style:
-              top: 98.6%
+              top: 98.63%
               left: 21%
               width: 25%
-              height: 1.2%
+              height: 1.22%
             state_filter:
               "open": opacity(0%)
               "closed": opacity(100%)
           # Media Players
           - type: state-icon
             tap_action:
-              action: toggle
+              action: more-info
             entity: media_player.apple_tv
             style:
               top: 13.31%
@@ -206,6 +206,28 @@ views:
             style:
               top: 29.10%
               left: 14.44%
+          - type: state-icon
+            tap_action:
+              action: toggle
+            entity: light.utility_room
+            style:
+              top: 81.25%
+              left: 71.52%
+          # Media Players
+          - type: state-icon
+            tap_action:
+              action: more-info
+            entity:  media_player.roku_streaming_stick
+            style:
+              top: 78.48%
+              left: 51.20%
+          - type: state-icon
+            tap_action:
+              action: more-info
+            entity:  media_player.xbr75x900e
+            style:
+              top: 14.37%
+              left: 69.51%
       - type: picture-elements
         # title: 'Upstairs'
         image: /local/floorplan-upstairs.svg
@@ -228,7 +250,7 @@ views:
           # Media Players
           - type: state-icon
             tap_action:
-              action: toggle
+              action: more-info
             entity: media_player.chromecast
             style:
               top: 13.31%
