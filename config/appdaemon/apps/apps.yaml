@@ -17,7 +17,7 @@ lights_schedule:
 #   # The temperature sensor to use to control temperature.
 #   sensor_temp: self.entities.sensor.sn1_temperature
 
-door_activated_light:
+laundry_room_light:
   module: door_activated_light
   class: DoorActivatedLight
   light: light.laundry_room
@@ -25,7 +25,7 @@ door_activated_light:
   # How long to leave the light on before turning it off automatically, in seconds.
   delay: 1800
 
-door_activated_light:
+uility_room_light:
   module: door_activated_light
   class: DoorActivatedLight
   light: light.utility_room
