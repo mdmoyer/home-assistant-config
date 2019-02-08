@@ -42,8 +42,8 @@ views:
           - light.hue_master_bedroom
           - light.master_bedroom_ceiling
           - light.laundry_room
-          - binary_sensor.laundry_room_door
-          - binary_sensor.utility_room_door
+          - binary_sensor.laundry_room_door_sensor_contact
+          - binary_sensor.utility_room_door_sensor_contact
 
   - icon: mdi:thermometer
     title: Climate
