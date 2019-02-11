@@ -14,8 +14,16 @@ class ThermostatElement extends HTMLElement {
     const root = this.shadowRoot;
     const style = document.createElement('style');
     style.textContent = `
+      .container {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        line-height: 40px;
+        text-align: center;
+        color: white;
+      }
       .temp-value {
-        font-size: 14pt;
         font-weight: bold;
       }
       .cool {
@@ -40,27 +48,28 @@ class ThermostatElement extends HTMLElement {
   }
 
   set hass(hass) {
+    const entityId = this.config.entity;
+    const hvacState = hass.states[this.config.hvac_state].state;
+    const currentTemperature = hass.states[entityId].attributes['current_temperature']
+    const targetTemperature = hass.states[entityId].attributes['temperature']
+    const operationMode = hass.states[entityId].attributes['operation_mode']
+
     const root = this.shadowRoot;
     if (!this.content) {
       this.content = document.createElement('div');
-      this.content.style.width = '40px';
-      this.content.style.height = '40px';
-      this.content.style.borderRadius = '20px';
-      this.content.style.backgroundColor = 'black';
-      this.content.style.lineHeight = '40px';
-      this.content.style.textAlign = 'center';
-      this.content.style.color = 'white';
       root.appendChild(this.content);
     }
+    this.content.className = "container ";
+    this.content.className += hvacState;
 
-    const entityId = this.config.entity;
-    const hvacState = hass.states[this.config.hvac_state].state;
-    const temperatureUnits = hass.states['sensor.dining_room_thermostat_nest_temperature'].attributes['unit_of_measurement'];
-    const currentTemperature = hass.states[entityId].attributes['current_temperature']
-    const operation_mode = hass.states[entityId].attributes['operation_mode']
+    var targetDisplay = operationMode == 'eco' ? 'ECO' : targetTemperature;
+    var targetFontSize = operationMode == 'eco' ? '11pt' : '14pt';
 
     this.content.innerHTML = `
-      <span class="temp-value">${currentTemperature}</span>
+      <span class="temp-value" style="font-size: ${targetFontSize}">${targetDisplay}</span>
+      <div style="position: absolute; height: 100%; width: 100%; top: 0px; left: 0px; text-align: center;">
+        <span style="position: relative; top: 30%; font-size: 6pt">${currentTemperature}</span>
+      </div>
     `;
 
     var svgElt = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
