@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=46
+  - url: /local/thermostat-element.js?v=QQQ000000QQQ
     type: module
 
 views:
@@ -75,7 +75,7 @@ views:
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg
+        image: /local/floorplan-main.svg?v=QQQ000000QQQ
         elements:
           - type: custom:thermostat-element
             entity: climate.dining_room_nest
@@ -189,7 +189,7 @@ views:
               opacity: 0.5
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg
+        image: /local/floorplan-basement.svg?v=QQQ000000QQQ
         elements:
           # Lights
           - type: state-icon
@@ -230,7 +230,7 @@ views:
               left: 69.51%
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg
+        image: /local/floorplan-upstairs.svg?v=QQQ000000QQQ
         elements:
           # Lights
           - type: state-icon
