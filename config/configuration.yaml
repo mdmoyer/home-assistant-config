@@ -73,8 +73,12 @@ map:
 # Track the sun
 sun:
 
-# Weather prediction
+binary_sensor:
+  - platform: hue
+
 sensor:
+  - platform: hue
+  # Weather prediction
   - platform: yr
   - platform: wunderground
     api_key: !secret wunderground_api_key
