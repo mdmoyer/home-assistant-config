@@ -96,12 +96,12 @@ views:
               left: 31.73%
           # Cameras
           - type: state-icon
-            entity: camera.indoorcam1
+            entity: camera.front_window_camera
             style:
               top: 95.32%
               left: 72.47%
           - type: state-icon
-            entity: camera.indoorcam2
+            entity: camera.kitchen_camera
             style:
               top: 80%
               left: 80%
@@ -260,9 +260,9 @@ views:
     title: Security
     cards:
       - type: picture-entity
-        entity: camera.indoorcam1
+        entity: camera.front_window_camera
       - type: picture-entity
-        entity: camera.indoorcam2
+        entity: camera.kitchen_camera
       - type: entities
         entities:
           - entity: cover.garage_door_opener

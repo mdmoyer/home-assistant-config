@@ -175,13 +175,14 @@ device_tracker:
       track_new_devices: false
       hide_if_away: false
 
+ffmpeg:
 camera:
-  - platform: synology
-    url: !secret nas_url
-    username: !secret nas_username
-    password: !secret nas_password
-    timeout: 15
-    verify_ssl: False
+  - platform: ffmpeg
+    name: Front Window Camera
+    input: !secret cam1_input
+  - platform: ffmpeg
+    name: Kitchen Camera
+    input: !secret cam2_input
 
 mqtt:
   broker: localhost
