@@ -6,76 +6,16 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=QQQ000000QQQ
+  - url: /local/thermostat-element.js?v=QQQ270919QQQ
     type: module
 
 views:
-    # View tab title.
-  - icon: mdi:home-assistant
-    # Optional unique id for direct access /lovelace/${id}
-    id: example
-    # Each view can have a different theme applied.
-    theme: dark-mode
-    # The cards to show on this view.
-    cards:
-        # The filter card will filter entities for their state
-      - type: entity-filter
-        entities:
-          - device_tracker.mmphone
-          - device_tracker.nlphone
-        state_filter:
-          - 'home'
-        card_config:
-          type: glance
-          title: Whereabouts
-      - type: history-graph
-        title: 'Presence'
-        entities:
-          - device_tracker.mmphone
-          - device_tracker.nlphone
-        hours_to_show: 24
-        refresh_interval: 60
-      - type: entities
-        entities:
-          - light.living_room
-          - light.back_hall
-          - light.hue_master_bedroom
-          - light.master_bedroom_ceiling
-          - light.laundry_room
-          - binary_sensor.laundry_room_door_sensor_contact
-          - binary_sensor.utility_room_door_sensor_contact
-
-  - icon: mdi:thermometer
-    title: Climate
-    cards:
-      - type: entities
-        entities:
-          - entity: climate.dining_room_nest
-            name: Thermostat
-          - entity: sensor.sn1_temperature
-            name: Bedroom
-      - type: history-graph
-        title: 'Temperature'
-        entities:
-          - sensor.sn1_temperature
-          - sensor.dining_room_thermostat_nest_temperature
-          - sensor.dining_room_thermostat_nest_hvac_state
-        hours_to_show: 24
-        refresh_interval: 60
-      - type: history-graph
-        title: 'Humidity'
-        entities:
-          - sensor.sn1_humidity
-          - sensor.dining_room_thermostat_nest_humidity
-        hours_to_show: 24
-        refresh_interval: 60
-
   - icon: mdi:floor-plan
     title: Floor Plan
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg?v=QQQ000000QQQ
+        image: /local/floorplan-main.svg?v=QQQ270919QQQ
         elements:
           - type: custom:thermostat-element
             entity: climate.dining_room_nest
@@ -189,7 +129,7 @@ views:
               opacity: 0.5
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg?v=QQQ000000QQQ
+        image: /local/floorplan-basement.svg?v=QQQ270919QQQ
         elements:
           # Lights
           - type: state-icon
@@ -230,7 +170,7 @@ views:
               left: 69.51%
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ000000QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ270919QQQ
         elements:
           # Lights
           - type: state-icon
@@ -255,6 +195,62 @@ views:
             style:
               top: 13.31%
               left: 85.19%
+
+  - icon: mdi:home-assistant
+    title: Overview
+    # theme: dark-mode
+    cards:
+        # The filter card will filter entities for their state
+      - type: entity-filter
+        entities:
+          - device_tracker.mmphone
+          - device_tracker.nlphone
+        state_filter:
+          - 'home'
+        card_config:
+          type: glance
+          title: Whereabouts
+      - type: history-graph
+        title: 'Presence'
+        entities:
+          - device_tracker.mmphone
+          - device_tracker.nlphone
+        hours_to_show: 24
+        refresh_interval: 60
+      - type: entities
+        entities:
+          - light.living_room
+          - light.back_hall
+          - light.hue_master_bedroom
+          - light.master_bedroom_ceiling
+          - light.laundry_room
+          - binary_sensor.laundry_room_door_sensor_contact
+          - binary_sensor.utility_room_door_sensor_contact
+
+  - icon: mdi:thermometer
+    title: Climate
+    cards:
+      - type: entities
+        entities:
+          - entity: climate.dining_room_nest
+            name: Thermostat
+          - entity: sensor.sn1_temperature
+            name: Bedroom
+      - type: history-graph
+        title: 'Temperature'
+        entities:
+          - sensor.sn1_temperature
+          - sensor.dining_room_thermostat_nest_temperature
+          - sensor.dining_room_thermostat_nest_hvac_state
+        hours_to_show: 24
+        refresh_interval: 60
+      - type: history-graph
+        title: 'Humidity'
+        entities:
+          - sensor.sn1_humidity
+          - sensor.dining_room_thermostat_nest_humidity
+        hours_to_show: 24
+        refresh_interval: 60
 
   - icon: mdi:lock-open
     title: Security
