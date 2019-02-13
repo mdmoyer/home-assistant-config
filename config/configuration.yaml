@@ -184,15 +184,19 @@ camera:
   - platform: ffmpeg
     name: Front Window Camera
     input: !secret cam1_input
+    extra_arguments: '-r 4 -vf "scale=640:360"'
   - platform: ffmpeg
     name: Kitchen Camera
     input: !secret cam2_input
+    extra_arguments: '-r 4 -vf "scale=640:360"'
   - platform: ffmpeg
     name: ddot_toll_plaza_entrance
     input: !secret ddot_toll_plaza_entrance_input
+    extra_arguments: '-r 4 -vf "scale=640:360"'
   - platform: ffmpeg
     name: ddot_toll_plaza_exit
     input: !secret ddot_toll_plaza_exit_input
+    extra_arguments: '-r 4 -vf "scale=640:360"'
 
 mqtt:
   broker: localhost
