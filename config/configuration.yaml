@@ -183,6 +183,12 @@ camera:
   - platform: ffmpeg
     name: Kitchen Camera
     input: !secret cam2_input
+  - platform: ffmpeg
+    name: ddot_toll_plaza_entrance
+    input: !secret ddot_toll_plaza_entrance_input
+  - platform: ffmpeg
+    name: ddot_toll_plaza_exit
+    input: !secret ddot_toll_plaza_exit_input
 
 mqtt:
   broker: localhost

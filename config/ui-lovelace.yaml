@@ -298,6 +298,16 @@ views:
         hours_to_show: 24
         refresh_interval: 60
 
+  - icon: mdi:car-side
+    title: Travel
+    cards:
+      - type: picture-entity
+        name: 'Delaware Toll Plaza Entrance'
+        entity: camera.ddot_toll_plaza_entrance
+      - type: picture-entity
+        name: 'Delaware Toll Plaza Exit'
+        entity: camera.ddot_toll_plaza_exit
+
   - icon: mdi:run
     title: Fitness
     cards:
