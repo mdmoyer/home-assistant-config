@@ -65,14 +65,14 @@ views:
               action: toggle
             entity: light.living_room
             style:
-              top: 12.40%
+              top: 13.48%
               left: 28.15%
           - type: state-icon # Living Room 2
             tap_action:
               action: toggle
             entity: light.living_room
             style:
-              top: 36.09%
+              top: 35.04%
               left: 28.15%
           - type: state-icon # Living Room 3
             tap_action:
