@@ -167,7 +167,7 @@ views:
             entity:  media_player.xbr75x900e
             style:
               top: 14.37%
-              left: 69.51%
+              left: 69.20%
       - type: picture-elements
         # title: 'Upstairs'
         image: /local/floorplan-upstairs.svg?v=QQQ270919QQQ
