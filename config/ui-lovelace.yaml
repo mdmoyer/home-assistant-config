@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=QQQ270919QQQ
+  - url: /local/thermostat-element.js?v=QQQ851062QQQ
     type: module
 
 views:
@@ -15,8 +15,20 @@ views:
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg?v=QQQ270919QQQ
+        image: /local/floorplan-main.svg?v=QQQ851062QQQ
         elements:
+          # Weather
+          - type: state-label
+            entity: sensor.dark_sky_temperature
+            style:
+              top: 5.00%
+              left: 7.00%
+          - type: state-label
+            entity: sensor.dark_sky_summary
+            style:
+              top: 5.00%
+              left: 25.00%
+          # Thermostat
           - type: custom:thermostat-element
             entity: climate.dining_room_nest
             hvac_state: sensor.dining_room_thermostat_nest_hvac_state
@@ -129,7 +141,7 @@ views:
               opacity: 0.5
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg?v=QQQ270919QQQ
+        image: /local/floorplan-basement.svg?v=QQQ851062QQQ
         elements:
           # Lights
           - type: state-icon
@@ -168,9 +180,15 @@ views:
             style:
               top: 14.37%
               left: 69.20%
+          # Temperature
+          - type: state-label
+            entity: sensor.sn2_temperature
+            style:
+              top: 49.60%
+              left: 64.35%
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ270919QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ851062QQQ
         elements:
           # Lights
           - type: state-icon
@@ -196,6 +214,12 @@ views:
               left: 58.02%
               color: gray
               opacity: 0.5
+          # Temperature
+          - type: state-label
+            entity: sensor.sn1_temperature
+            style:
+              top: 15.00%
+              left: 58.02%
 
   - icon: mdi:home-assistant
     title: Overview

@@ -74,20 +74,14 @@ map:
 sun:
 
 binary_sensor:
-  - platform: hue
+  - platform: huesensor
 
 sensor:
-  - platform: hue
-  # Weather prediction
-  - platform: yr
-  - platform: wunderground
-    api_key: !secret wunderground_api_key
-    monitored_conditions:
-      - alerts
-      - temp_f
+  - platform: huesensor
+
+  #### DARKSKY #################################################################
   - platform: darksky
     api_key: !secret dark_sky_api_key
-    update_interval: 120
     monitored_conditions:
      - summary
      - icon
@@ -109,7 +103,7 @@ sensor:
      - hourly_summary
      - daily_summary
 
-  # Entries for multisensor SensorNode1
+  #### SENSORNODE 1 ############################################################
   - platform: mqtt
     state_topic: !secret sensornode1_name
     name: "SN1 Humidity"
@@ -135,6 +129,35 @@ sensor:
     name: "SN1 Real Feel"
     unit_of_measurement: "°F"
     value_template: '{{ value_json.heatIndex | round(1) }}'
+
+  #### SENSORNODE 2 ############################################################
+  - platform: mqtt
+    state_topic: !secret sensornode2_name
+    name: "SN2 Humidity"
+    unit_of_measurement: "%"
+    value_template: '{{ value_json.humidity | round(1) }}'
+  - platform: mqtt
+    state_topic: !secret sensornode2_name
+    name: "SN2 LDR"
+    # This sensor is not calibrated to actual LUX. Rather, this a map of the input voltage ranging from 0 - 1023.
+    unit_of_measurement: "LUX"
+    value_template: '{{ value_json.ldr }}'
+  - platform: mqtt
+    state_topic: !secret sensornode2_name
+    name: "SN2 Motion"
+    value_template: '{{ value_json.motion }}'
+  - platform: mqtt
+    state_topic: !secret sensornode2_name
+    name: "SN2 Temperature"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.temperature | round(1) }}'
+  - platform: mqtt
+    state_topic: !secret sensornode2_name
+    name: "SN2 Real Feel"
+    unit_of_measurement: "°F"
+    value_template: '{{ value_json.heatIndex | round(1) }}'
+
+  #### FITBIT ##################################################################
   - platform: fitbit
     clock_format: 12H
     monitored_resources:
@@ -151,7 +174,7 @@ sensor:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
 
 # Cloud
 cloud:
