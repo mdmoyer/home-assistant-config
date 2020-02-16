@@ -260,10 +260,16 @@ views:
             name: Thermostat
           - entity: sensor.sn1_temperature
             name: Bedroom
+          - entity: sensor.sn2_temperature
+            name: Basement
+          - entity: sensor.sn3_temperature
+            name: Living Room
       - type: history-graph
         title: 'Temperature'
         entities:
           - sensor.sn1_temperature
+          - sensor.sn2_temperature
+          - sensor.sn3_temperature
           - sensor.dining_room_thermostat_nest_temperature
           - sensor.dining_room_thermostat_nest_hvac_state
         hours_to_show: 24
@@ -272,6 +278,8 @@ views:
         title: 'Humidity'
         entities:
           - sensor.sn1_humidity
+          - sensor.sn2_humidity
+          - sensor.sn3_humidity
           - sensor.dining_room_thermostat_nest_humidity
         hours_to_show: 24
         refresh_interval: 60
@@ -290,7 +298,11 @@ views:
       - type: history-graph
         title: 'Motion'
         entities:
+          - device_tracker.mmphone
+          - device_tracker.nlphone
           - sensor.sn1_motion
+          - sensor.sn2_motion
+          - sensor.sn3_motion
           - cover.garage_door_opener
         hours_to_show: 24
         refresh_interval: 60
