@@ -1,6 +1,5 @@
 thermostat:
   name: Nest Thermostat
-  view: no
   entities:
     - sensor.dining_room_thermostat_nest_humidity
     - sensor.dining_room_thermostat_nest_hvac_state
