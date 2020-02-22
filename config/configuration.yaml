@@ -30,6 +30,9 @@ http:
 # Enable logging
 logger:
 
+# System health component
+system_health:
+
 # Enables Home Assistant configuration GUI (integrations, users, server, etc.)
 config:
 
