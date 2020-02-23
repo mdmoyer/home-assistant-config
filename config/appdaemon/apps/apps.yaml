@@ -9,9 +9,8 @@ lights_schedule:
 temp_control:
   module: temp_control
   class: TempControl
-  constrain_start_time: "23:00:00"
-  constrain_end_time: "07:00:00"
-  min_temp: 65
+  constrain_input_select: input_select.house_mode,Asleep
+  min_temp: 67
   max_temp: 70
   climate_entity: climate.dining_room_nest
   # The temperature sensor to use to control temperature.

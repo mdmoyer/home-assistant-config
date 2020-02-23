@@ -250,6 +250,10 @@ views:
           - light.laundry_room
           - binary_sensor.laundry_room_door_sensor_contact
           - binary_sensor.utility_room_door_sensor_contact
+      - type: entities
+        title: House Mode
+        entities:
+          - input_select.house_mode
 
   - icon: mdi:thermometer
     title: Climate

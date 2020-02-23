@@ -258,4 +258,15 @@ mqtt:
   password: !secret mqtt_password
   discovery: true
 
+input_select:
+  house_mode:
+    name: House Mode
+    options:
+      - Home
+      - Asleep
+      - Away
+    # initial: Anne Therese
+    # icon: mdi:panda
+
 group: !include groups.yaml
+automation: !include automation.yaml

@@ -15,7 +15,7 @@ class TempControl(hass.Hass):
         # Regulate temperature everytime the HVAC turns itself on or off.
         self.listen_state(self.regulate_temp_callback, climate_entity, attribute = "hvac_action")
         # At the end of the period of temperature regulation, reset the temperature. Subtract 1 second to ensure it runs before the end constraint kicks in.
-        end_time = (datetime.datetime.strptime(self.args["constrain_end_time"], '%H:%M:%S') - datetime.timedelta(seconds=1)).time()
+        # end_time = (datetime.datetime.strptime(self.args["constrain_end_time"], '%H:%M:%S') - datetime.timedelta(seconds=1)).time()
         self.run_daily(self.end_temp_regulation_callback, end_time)
 
     def regulate_temp_callback(self, entity, attribute, old, new, kwargs):
