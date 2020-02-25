@@ -10,27 +10,29 @@ class TempControl(hass.Hass):
     HVAC_ACTION_IDLE = "idle"
 
     def initialize(self):
-        # Regulate temperature everytime the sensor reports a temperature change.
+        # Regulate temperature when sleep mode is activated, everytime the
+        # sensor reports a temperature change, everytime the HVAC turns itself
+        # on or off, or the target temperature is changed.
+        self.listen_state(self.regulate_temp_callback, "input_select.house_mode", new = "Asleep")
         self.listen_state(self.regulate_temp_callback, self.args["sensor_temp"])
-        # Regulate temperature everytime the HVAC turns itself on or off.
         self.listen_state(self.regulate_temp_callback, climate_entity, attribute = "hvac_action")
-        # At the end of the period of temperature regulation, reset the temperature. Subtract 1 second to ensure it runs before the end constraint kicks in.
-        # end_time = (datetime.datetime.strptime(self.args["constrain_end_time"], '%H:%M:%S') - datetime.timedelta(seconds=1)).time()
-        self.run_daily(self.end_temp_regulation_callback, end_time)
+        self.listen_state(self.regulate_temp_callback, climate_entity, attribute = "temperature")
 
     def regulate_temp_callback(self, entity, attribute, old, new, kwargs):
-        self.regulate_temp()
-
-    def end_temp_regulation_callback(self, kwargs):
-        hvac_mode = self.get_state(self.args["climate_entity"])
-        reset_temp = 75 if hvac_mode == self.HVAC_MODE_COOL else 65 if hvac_mode == self.HVAC_MODE_HEAT else 70
-        self.set_climate(hvac_mode, reset_temp)
-
-    def regulate_temp(self):
+        self.log("Regulate temperature")
         climate_entity = self.args["climate_entity"]
-        sensor_temp = float(self.get_state(self.args["sensor_temp"]))
+        temp_sensor = float(self.get_state(self.args["sensor_temp"]))
         min_temp = float(self.args["min_temp"])
         max_temp = float(self.args["max_temp"])
+        self.regulate_temp(climate_entity, temp_sensor, min_temp, max_temp)
+
+    def end_regulate_temp(self, climate_entity):
+        self.log("End temperature regulation")
+        hvac_mode = self.get_state(climate_entity)
+        reset_temp = 75 if hvac_mode == self.HVAC_MODE_COOL else 65 if hvac_mode == self.HVAC_MODE_HEAT else 70
+        tempcon_util.set_climate(hvac_mode, reset_temp)
+
+    def regulate_temp(self, climate_entity, temp_sensor, min_temp, max_temp):
         climate_curr_temp = float(self.get_state(climate_entity, attribute = "current_temperature"))
         hvac_mode = self.get_state(climate_entity)
         # Indicates whether the HVAC is actively "heating" or "cooling". If neither, it is "idle".

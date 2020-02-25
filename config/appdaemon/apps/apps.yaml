@@ -6,6 +6,10 @@ lights_schedule:
   module: lights_schedule
   class: LightsSchedule
 
+house_mode:
+  module: house_mode
+  class: HouseMode
+
 temp_control:
   module: temp_control
   class: TempControl

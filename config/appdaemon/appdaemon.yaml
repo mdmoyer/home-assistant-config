@@ -2,6 +2,8 @@ secrets: /config/secrets.yaml
 logs:
   main_log:
     filename: /config/appdaemon/info.log
+  error_log:
+    filename: /config/appdaemon/info.log
 appdaemon:
   latitude: !secret home_latitude
   longitude: !secret home_longitude
