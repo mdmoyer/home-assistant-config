@@ -32,7 +32,7 @@ class ThermostatElement extends HTMLElement {
       .heat {
         background-color: #F48013;
       }
-      .off {
+      .idle {
         background-color: black;
       }
     `;
@@ -49,10 +49,10 @@ class ThermostatElement extends HTMLElement {
 
   set hass(hass) {
     const entityId = this.config.entity;
-    const hvacState = hass.states[this.config.hvac_state].state;
+    const hvacAction = hass.states[entityId].attributes['hvac_action']
+    const presetMode = hass.states[entityId].attributes['preset_mode']
     const currentTemperature = hass.states[entityId].attributes['current_temperature']
     const targetTemperature = hass.states[entityId].attributes['temperature']
-    const operationMode = hass.states[entityId].attributes['operation_mode']
 
     const root = this.shadowRoot;
     if (!this.content) {
@@ -60,10 +60,10 @@ class ThermostatElement extends HTMLElement {
       root.appendChild(this.content);
     }
     this.content.className = "container ";
-    this.content.className += hvacState;
+    this.content.className += hvacAction;
 
-    var targetDisplay = operationMode == 'eco' ? 'ECO' : targetTemperature;
-    var targetFontSize = operationMode == 'eco' ? '11pt' : '14pt';
+    var targetDisplay = presetMode == 'eco' ? 'ECO' : targetTemperature;
+    var targetFontSize = presetMode == 'eco' ? '11pt' : '14pt';
 
     this.content.innerHTML = `
       <span class="temp-value" style="font-size: ${targetFontSize}">${targetDisplay}</span>

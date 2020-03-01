@@ -31,7 +31,6 @@ views:
           # Thermostat
           - type: custom:thermostat-element
             entity: climate.dining_room_nest
-            hvac_state: sensor.dining_room_thermostat_nest_hvac_state
             style:
               top: 60.68%
               left: 55.19%
