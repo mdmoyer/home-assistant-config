@@ -26,10 +26,10 @@ class ThermostatElement extends HTMLElement {
       .temp-value {
         font-weight: bold;
       }
-      .cool {
+      .cooling {
         background-color: #0080FF;
       }
-      .heat {
+      .heating {
         background-color: #F48013;
       }
       .idle {
@@ -62,8 +62,8 @@ class ThermostatElement extends HTMLElement {
     this.content.className = "container ";
     this.content.className += hvacAction;
 
-    var targetDisplay = presetMode == 'eco' ? 'ECO' : targetTemperature;
-    var targetFontSize = presetMode == 'eco' ? '11pt' : '14pt';
+    var targetDisplay = presetMode.toLowerCase().includes('eco') ? 'ECO' : targetTemperature;
+    var targetFontSize = presetMode.toLowerCase().includes('eco') ? '11pt' : '14pt';
 
     this.content.innerHTML = `
       <span class="temp-value" style="font-size: ${targetFontSize}">${targetDisplay}</span>
