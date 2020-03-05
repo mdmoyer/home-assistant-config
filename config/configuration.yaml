@@ -18,6 +18,7 @@ homeassistant:
   time_zone: !secret home_timezone
   # Customization file
   # customize: !include customize.yaml
+  customize: !include customize.yaml
 
 # Database options
 recorder:
@@ -221,6 +222,18 @@ cover:
     password: !secret myq_cover_password
     type: chamberlain
 
+person:
+  - name: mm
+    id: mm
+    device_trackers:
+      - device_tracker.mmphone
+      - device_tracker.google_maps_102300921053278247904
+  - name: nl
+    id: nl
+    device_trackers:
+      - device_tracker.nlphone
+      - device_tracker.google_maps_105598837437051787295
+
 device_tracker:
   - platform: ddwrt
     host: !secret router_ip
@@ -230,6 +243,31 @@ device_tracker:
     consider_home: 180
     new_device_defaults:
       track_new_devices: false
+  - platform: google_maps
+    username: !secret google_maps_username
+    max_gps_accuracy: 200
+
+zone:
+  - name: Home
+    latitude: !secret home_latitude
+    longitude: !secret home_longitude
+    radius: 40
+    icon: mdi:home
+  - name: !secret mmwork_name
+    latitude: !secret mmwork_latitude
+    longitude: !secret mmwork_longitude
+    radius: 80
+    icon: mdi:briefcase
+  - name: !secret nlwork_name
+    latitude: !secret nlwork_latitude
+    longitude: !secret nlwork_longitide
+    radius: 250
+    icon: mdi:briefcase
+  - name: !secret amhome_name
+    latitude: !secret amhome_latitude
+    longitude: !secret amhome_longitide
+    radius: 250
+    icon: mdi:home
 
 ffmpeg:
 camera:
@@ -265,8 +303,6 @@ input_select:
       - Home
       - Asleep
       - Away
-    # initial: Anne Therese
-    # icon: mdi:panda
 
 group: !include groups.yaml
 automation: !include automation.yaml

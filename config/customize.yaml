@@ -1,0 +1,6 @@
+person.mm:
+  friendly_name: !secret mm_name
+  entity_picture: "/local/avatar-mm.jpg"
+person.nl:
+  friendly_name: !secret nl_name
+  entity_picture: "/local/avatar-nl.png"

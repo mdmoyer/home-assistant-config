@@ -36,12 +36,12 @@ views:
               left: 55.19%
           # Device Trackers
           - type: state-icon
-            entity: device_tracker.mmphone
+            entity: person.mm
             style:
               top: 20.26%
               left: 31.73%
           - type: state-icon
-            entity: device_tracker.nlphone
+            entity: person.nl
             style:
               top: 28.26%
               left: 31.73%
@@ -227,8 +227,10 @@ views:
         # The filter card will filter entities for their state
       - type: entity-filter
         entities:
-          - device_tracker.mmphone
-          - device_tracker.nlphone
+          - entity: person.mm
+            name: !secret mm_name
+          - entity: person.nl
+            name: !secret nl_name
         state_filter:
           - 'home'
         card_config:
@@ -237,8 +239,10 @@ views:
       - type: history-graph
         title: 'Presence'
         entities:
-          - device_tracker.mmphone
-          - device_tracker.nlphone
+          - entity: person.mm
+            name: !secret mm_name
+          - entity: person.nl
+            name: !secret nl_name
         hours_to_show: 24
         refresh_interval: 60
       - type: entities
@@ -301,8 +305,10 @@ views:
       - type: history-graph
         title: 'Motion'
         entities:
-          - device_tracker.mmphone
-          - device_tracker.nlphone
+          - entity: person.mm
+            name: !secret mm_name
+          - entity: person.nl
+            name: !secret nl_name
           - sensor.sn1_motion
           - sensor.sn2_motion
           - sensor.sn3_motion
@@ -336,6 +342,13 @@ views:
   - icon: mdi:car-side
     title: Travel
     cards:
+      - type: map
+        aspect_ratio: 16:9
+        default_zoom: 8
+        entities:
+          - person.mm
+          - person.nl
+          - zone.home
       - type: picture-entity
         name: 'Delaware Toll Plaza Entrance'
         entity: camera.ddot_toll_plaza_entrance
