@@ -224,18 +224,11 @@ views:
     title: Overview
     # theme: dark-mode
     cards:
-        # The filter card will filter entities for their state
-      - type: entity-filter
+      - type: entities
+        title: Select Mode
         entities:
-          - entity: person.mm
-            name: !secret mm_name
-          - entity: person.nl
-            name: !secret nl_name
-        state_filter:
-          - 'home'
-        card_config:
-          type: glance
-          title: Whereabouts
+          - input_select.temp_reg
+          - input_select.house_mode
       - type: history-graph
         title: 'Presence'
         entities:
@@ -253,10 +246,6 @@ views:
           - light.laundry_room
           - binary_sensor.laundry_room_door_sensor_contact
           - binary_sensor.utility_room_door_sensor_contact
-      - type: entities
-        title: House Mode
-        entities:
-          - input_select.house_mode
 
   - icon: mdi:thermometer
     title: Climate

@@ -303,6 +303,11 @@ input_select:
       - Home
       - Asleep
       - Away
+  temp_reg:
+    name: Temperatute Regulation
+    options:
+      - Normal
+      - Nighttime
 
 group: !include groups.yaml
 automation: !include automation.yaml

@@ -13,12 +13,11 @@ house_mode:
 temp_control:
   module: temp_control
   class: TempControl
-  constrain_input_select: input_select.house_mode,Asleep
   min_temp: 67
   max_temp: 70
   climate_entity: climate.dining_room_nest
   # The temperature sensor to use to control temperature.
-  sensor_temp: sensor.sn1_temperature
+  temp_sensor: sensor.sn1_temperature
 
 laundry_room_light:
   module: door_activated_light
