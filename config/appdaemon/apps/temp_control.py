@@ -14,8 +14,8 @@ class TempControl(hass.Hass):
         self.listen_state(self.regulate_temp_callback, "input_select.temp_reg", new = "Nighttime")
         # Maintain temperature regulation.
         self.listen_state(self.regulate_temp_callback, self.args["temp_sensor"], constrain_input_select = "input_select.temp_reg,Nighttime")
-        self.listen_state(self.regulate_temp_callback, self.args["climate_entity"], attribute = "hvac_action", constrain_input_select = "input_select.temp_reg,Nighttime")
-        self.listen_state(self.regulate_temp_callback, self.args["climate_entity"], attribute = "temperature", constrain_input_select = "input_select.temp_reg,Nighttime")
+        # self.listen_state(self.regulate_temp_callback, self.args["climate_entity"], attribute = "hvac_action", constrain_input_select = "input_select.temp_reg,Nighttime")
+        # self.listen_state(self.regulate_temp_callback, self.args["climate_entity"], attribute = "temperature", constrain_input_select = "input_select.temp_reg,Nighttime")
         # End temperature regulation.
         self.listen_state(self.end_regulate_temp_callback, "input_select.temp_reg", new = "Normal")
 
