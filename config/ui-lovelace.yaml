@@ -187,8 +187,20 @@ views:
               left: 64.35%
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ851062QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ661477QQQ
         elements:
+          # Service Buttons
+          # USe this for more advanced Input Select business.
+          # https://community.home-assistant.io/t/input-select-select-option-template/110228
+          - type: service-button
+            title: Sleep
+            service: input_select.select_option
+            service_data:
+              entity_id: input_select.house_mode
+              option: Asleep
+            style:
+              top: 34.10%
+              left: 58.02%
           # Lights
           - type: state-icon
             tap_action:
@@ -203,8 +215,8 @@ views:
               action: more-info
             entity: media_player.chromecast
             style:
-              top: 13.31%
-              left: 85.19%
+              top: 14.52%
+              left: 83.17%
           # Inactive
           - type: icon # Master Bedroom Ceiling
             icon: mdi:lightbulb
