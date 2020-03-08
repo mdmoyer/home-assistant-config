@@ -37,7 +37,7 @@ class HouseMode(hass.Hass):
         # Return temperature regulation to normal.
         self.select_option("input_select.temp_reg", "Normal")
 
-    def leave_home_callback(self, kwargs):
+    def leave_home_callback(self, entity, attribute, old, new, kwargs):
         # Change house_mode to Away if everyone is away.
         if self.get_state("person.mm") == "Away" and self.get_state("person.nl") == "Away":
             self.select_option("input_select.house_mode", "Away")
@@ -47,7 +47,7 @@ class HouseMode(hass.Hass):
         if self.get_state("input_select.house_mode") == "Away":
             self.select_option("input_select.house_mode", "Home")
 
-    def wake_up_callback(self, entity, attribute, old, new, kwargs):
+    def wake_up_callback(self, kwargs):
         # Change house_mode to Home only if it is currently set to Asleep
         if self.get_state("input_select.house_mode") == "Asleep":
             self.select_option("input_select.house_mode", "Home")
