@@ -5,6 +5,7 @@ import logging
 class HouseMode(hass.Hass):
 
     def initialize(self):
+        self.const = self.get_app("const")
         self.listen_state(self.log_house_mode_callback, "input_select.house_mode")
         self.listen_state(self.away_mode_activated_callback, "input_select.house_mode", new = "Away")
         self.listen_state(self.away_mode_deactivated_callback, "input_select.house_mode", old = "Away")
@@ -31,23 +32,23 @@ class HouseMode(hass.Hass):
         # Turn off all lights in the house.
         self.call_service("light/turn_off", entity_id = "all")
         # Set temperature regulation to nighttime mode.
-        self.select_option("input_select.temp_reg", "Nighttime")
+        self.select_option("input_select.temp_reg", const.TEMP_REG_NIGHTTIME)
 
     def sleep_mode_deactivated_callback(self, entity, attribute, old, new, kwargs):
         # Return temperature regulation to normal.
-        self.select_option("input_select.temp_reg", "Normal")
+        self.select_option("input_select.temp_reg", const.TEMP_REG_NORMAL)
 
     def leave_home_callback(self, entity, attribute, old, new, kwargs):
         # Change house_mode to Away if everyone is away.
-        if self.get_state("person.mm") == "Away" and self.get_state("person.nl") == "Away":
-            self.select_option("input_select.house_mode", "Away")
+        if self.get_state("person.mm") == const.PERSON_AWAY and self.get_state("person.nl") == const.PERSON_AWAY:
+            self.select_option("input_select.house_mode", const.HOUSE_MODE_AWAY)
 
     def return_home_callback(self, entity, attribute, old, new, kwargs):
         # Change house_mode to Home if someone comes home and the house is in Away mode.
-        if self.get_state("input_select.house_mode") == "Away":
-            self.select_option("input_select.house_mode", "Home")
+        if self.get_state("input_select.house_mode") == const.HOUSE_MODE_AWAY:
+            self.select_option("input_select.house_mode", const.HOUSE_MODE_HOME)
 
     def wake_up_callback(self, kwargs):
         # Change house_mode to Home only if it is currently set to Asleep
-        if self.get_state("input_select.house_mode") == "Asleep":
-            self.select_option("input_select.house_mode", "Home")
+        if self.get_state("input_select.house_mode") == const.HOUSE_MODE_ASLEEP:
+            self.select_option("input_select.house_mode", const.HOUSE_MODE_HOME)

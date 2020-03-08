@@ -1,3 +1,7 @@
+const:
+  module: const
+  class: Const
+
 util:
   module: util
   class: Util
@@ -9,6 +13,7 @@ lights_schedule:
 house_mode:
   module: house_mode
   class: HouseMode
+  dependencies: Const
 
 temp_control:
   module: temp_control
