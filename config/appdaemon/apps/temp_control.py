@@ -11,7 +11,7 @@ class TempControl(hass.Hass):
 
     def initialize(self):
         # Start temperature regulation.
-        self.listen_state(self.regulate_temp_callback, "input_select.temp_reg", new = "Nighttime")
+        self.listen_state(self.start_regulate_temp_callback, "input_select.temp_reg", new = "Nighttime")
         # Maintain temperature regulation.
         self.listen_state(self.regulate_temp_callback, self.args["temp_sensor"], constrain_input_select = "input_select.temp_reg,Nighttime")
         # self.listen_state(self.regulate_temp_callback, self.args["climate_entity"], attribute = "hvac_action", constrain_input_select = "input_select.temp_reg,Nighttime")
@@ -19,8 +19,22 @@ class TempControl(hass.Hass):
         # End temperature regulation.
         self.listen_state(self.end_regulate_temp_callback, "input_select.temp_reg", new = "Normal")
 
+    def start_regulate_temp_callback(self, entity, attribute, old, new, kwargs):
+        climate_entity = self.args["climate_entity"]
+        sensor_temp = float(self.get_state(self.args["temp_sensor"]))
+        min_temp = float(self.args["min_temp"])
+        max_temp = float(self.args["max_temp"])
+        # Store the HVAC mode when starting temperature regulation, so we can set it back when it ends.
+        self.initial_hvac_mode = self.get_state(climate_entity)
+        # Regulate the temperature.
+        self.regulate_temp(climate_entity, sensor_temp, min_temp, max_temp)
+
     def end_regulate_temp_callback(self, entity, attribute, old, new, kwargs):
-        self.end_regulate_temp(self.args["climate_entity"])
+        self.log("End temperature regulation")
+        climate_entity = self.args["climate_entity"]
+        hvac_mode = self.initial_hvac_mode
+        reset_temp = 75 if hvac_mode == self.HVAC_MODE_COOL else 65 if hvac_mode == self.HVAC_MODE_HEAT else 70
+        self.set_climate(climate_entity, hvac_mode, reset_temp)
 
     def regulate_temp_callback(self, entity, attribute, old, new, kwargs):
         climate_entity = self.args["climate_entity"]
@@ -28,12 +42,6 @@ class TempControl(hass.Hass):
         min_temp = float(self.args["min_temp"])
         max_temp = float(self.args["max_temp"])
         self.regulate_temp(climate_entity, sensor_temp, min_temp, max_temp)
-
-    def end_regulate_temp(self, climate_entity):
-        self.log("End temperature regulation")
-        hvac_mode = self.get_state(climate_entity)
-        reset_temp = 75 if hvac_mode == self.HVAC_MODE_COOL else 65 if hvac_mode == self.HVAC_MODE_HEAT else 70
-        self.set_climate(climate_entity, hvac_mode, reset_temp)
 
     def regulate_temp(self, climate_entity, sensor_temp, min_temp, max_temp):
         self.log("Regulate temperature")
