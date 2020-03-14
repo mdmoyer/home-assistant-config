@@ -4,12 +4,13 @@ import datetime
 class LightsSchedule(hass.Hass):
 
   def initialize(self):
+    self.const = self.get_app("const")
     # Turn living room lights on weekday mornings, only if the sun is still down.
     self.run_daily(self.lights_on_morning, datetime.time(6, 0, 0), constrain_days = "mon,tue,wed,thu,fri", constrain_end_time = "sunrise")
     # Turn off living room lights on weekday mornings when the sun rises.
     self.run_at_sunrise(self.lights_off_morning, constrain_days = "mon,tue,wed,thu,fri")
     # Turn off living room lights on weekday mornings when Mike leaves for work.
-    self.listen_state(self.lights_off_away, entity="device_tracker.mmphone", old="home", new="not_home", constrain_days = "mon,tue,wed,thu,fri", constrain_end_time = "sunrise")
+    self.listen_state(self.lights_off_away, entity="person.mm", old=self.const.PERSON_HOME, new=self.const.PERSON_AWAY, constrain_days = "mon,tue,wed,thu,fri", constrain_end_time = "sunrise")
     # Turn on living room lights 60 minutes before sunset.
     self.run_at_sunset(self.lights_on_evening, offset = -60 * 60)
 
