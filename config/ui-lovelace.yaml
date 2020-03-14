@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=QQQ727116QQQ
+  - url: /local/thermostat-element.js?v=QQQ460100QQQ
     type: module
 
 views:
@@ -15,7 +15,7 @@ views:
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg?v=QQQ727116QQQ
+        image: /local/floorplan-main.svg?v=QQQ460100QQQ
         elements:
           # Weather
           - type: state-label
@@ -100,6 +100,13 @@ views:
             style:
               top: 73.62%
               left: 72.84%
+          - type: state-icon # Dining Room
+            tap_action:
+              action: toggle
+            entity: light.dining_room_dimmer
+            style:
+              top: 49.43%
+              left: 72.84%
           # Doors
           - type: image
             image: /local/red.png
@@ -132,16 +139,10 @@ views:
               top: 13.31%
               left: 85.19%
           # Inactive
-          - type: icon # Dining Room
-            icon: mdi:lightbulb
-            style:
-              top: 49.43%
-              left: 72.84%
-              color: gray
-              opacity: 0.5
+          # None
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg?v=QQQ727116QQQ
+        image: /local/floorplan-basement.svg?v=QQQ460100QQQ
         elements:
           # Lights
           - type: state-icon
@@ -231,7 +232,7 @@ views:
               opacity: 0.5
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ727116QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ460100QQQ
         elements:
           # Service Buttons
           # USe this for more advanced Input Select business.
