@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=QQQ851062QQQ
+  - url: /local/thermostat-element.js?v=QQQ727116QQQ
     type: module
 
 views:
@@ -15,7 +15,7 @@ views:
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg?v=QQQ851062QQQ
+        image: /local/floorplan-main.svg?v=QQQ727116QQQ
         elements:
           # Weather
           - type: state-label
@@ -92,6 +92,14 @@ views:
             style:
               top: 23.95%
               left: 82.22%
+          - type: state-icon # Kitchen
+            tap_action:
+              action: toggle
+            entity: switch.kitchen_switch
+            icon: mdi:lightbulb
+            style:
+              top: 73.62%
+              left: 72.84%
           # Doors
           - type: image
             image: /local/red.png
@@ -131,16 +139,9 @@ views:
               left: 72.84%
               color: gray
               opacity: 0.5
-          - type: icon # Kitchen
-            icon: mdi:lightbulb
-            style:
-              top: 73.62%
-              left: 72.84%
-              color: gray
-              opacity: 0.5
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg?v=QQQ851062QQQ
+        image: /local/floorplan-basement.svg?v=QQQ727116QQQ
         elements:
           # Lights
           - type: state-icon
@@ -185,9 +186,52 @@ views:
             style:
               top: 49.60%
               left: 64.35%
+          # Inactive
+          - type: icon # Basement 1
+            icon: mdi:lightbulb
+            style:
+              top: 18.94%
+              left: 44.42%
+              color: gray
+              opacity: 0.5
+          - type: icon # Basement 2
+            icon: mdi:lightbulb
+            style:
+              top: 18.94%
+              left: 59.42%
+              color: gray
+              opacity: 0.5
+          - type: icon # Basement 3
+            icon: mdi:lightbulb
+            style:
+              top: 18.94%
+              left: 74.42%
+              color: gray
+              opacity: 0.5
+          - type: icon # Basement 4
+            icon: mdi:lightbulb
+            style:
+              top: 30.09%
+              left: 44.42%
+              color: gray
+              opacity: 0.5
+          - type: icon # Basement 5
+            icon: mdi:lightbulb
+            style:
+              top: 30.09%
+              left: 59.42%
+              color: gray
+              opacity: 0.5
+          - type: icon # Basement 6
+            icon: mdi:lightbulb
+            style:
+              top: 30.09%
+              left: 74.42%
+              color: gray
+              opacity: 0.5
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ661477QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ727116QQQ
         elements:
           # Service Buttons
           # USe this for more advanced Input Select business.
