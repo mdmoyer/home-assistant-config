@@ -13,7 +13,7 @@ lights_schedule:
 house_mode:
   module: house_mode
   class: HouseMode
-  dependencies: Const
+  dependencies: const
 
 temp_control:
   module: temp_control
