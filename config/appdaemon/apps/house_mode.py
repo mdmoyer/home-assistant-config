@@ -7,15 +7,12 @@ class HouseMode(hass.Hass):
     def initialize(self):
         self.const = self.get_app("const")
         self.listen_state(self.log_house_mode_callback, "input_select.house_mode")
-        self.listen_state(self.away_mode_activated_callback, "input_select.house_mode", new = "Away")
-        self.listen_state(self.away_mode_deactivated_callback, "input_select.house_mode", old = "Away")
-        self.listen_state(self.sleep_mode_activated_callback, "input_select.house_mode", new = "Asleep")
-        self.listen_state(self.sleep_mode_deactivated_callback, "input_select.house_mode", old = "Asleep")
+        self.listen_state(self.away_mode_activated_callback, "input_select.house_mode", new = self.const.HOUSE_MODE_AWAY)
+        self.listen_state(self.away_mode_deactivated_callback, "input_select.house_mode", old = self.const.HOUSE_MODE_AWAY)
+        self.listen_state(self.sleep_mode_activated_callback, "input_select.house_mode", new = self.const.HOUSE_MODE_ASLEEP)
+        self.listen_state(self.sleep_mode_deactivated_callback, "input_select.house_mode", old = self.const.HOUSE_MODE_ASLEEP)
         self.run_daily(self.wake_up_callback, "07:00:00")
-        self.listen_state(self.leave_home_callback, "person.mm", old = "Home", new = "Away")
-        self.listen_state(self.leave_home_callback, "person.nl", old = "Home", new = "Away")
-        self.listen_state(self.return_home_callback, "person.mm", new = "Home")
-        self.listen_state(self.return_home_callback, "person.nl", new = "Home")
+        self.listen_state(self.update_home_status_callback, "person")
 
     def log_house_mode_callback(self, entity, attribute, old, new, kwargs):
         self.log("House mode: " + old + " --> " + new)
@@ -38,14 +35,15 @@ class HouseMode(hass.Hass):
         # Return temperature regulation to normal.
         self.select_option("input_select.temp_reg", self.const.TEMP_REG_NORMAL)
 
-    def leave_home_callback(self, entity, attribute, old, new, kwargs):
+    def update_home_status_callback(self, entity, attribute, old, new, kwargs):
+        self.log("Person: " entity + ": "+ old + " --> " + new)
         # Change house_mode to Away if everyone is away.
-        if self.get_state("person.mm") == self.const.PERSON_AWAY and self.get_state("person.nl") == self.const.PERSON_AWAY:
+        if self.noone_home():
+            self.log("No one is home")
             self.select_option("input_select.house_mode", self.const.HOUSE_MODE_AWAY)
-
-    def return_home_callback(self, entity, attribute, old, new, kwargs):
-        # Change house_mode to Home if someone comes home and the house is in Away mode.
-        if self.get_state("input_select.house_mode") == self.const.HOUSE_MODE_AWAY:
+        # Change house_mode to Home if anyone is home and the house_mode is set to Away.
+        elif self.anyone_home() and self.get_state("input_select.house_mode") == self.const.HOUSE_MODE_AWAY:
+            self.log("Someone is home")
             self.select_option("input_select.house_mode", self.const.HOUSE_MODE_HOME)
 
     def wake_up_callback(self, kwargs):
