@@ -286,6 +286,10 @@ views:
         entities:
           - input_select.temp_reg
           - input_select.house_mode
+      - type: entities
+        title: Automation
+        entities:
+          - input_boolean.light_cycle
       - type: history-graph
         title: 'Presence'
         entities:

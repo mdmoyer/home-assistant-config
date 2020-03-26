@@ -39,3 +39,7 @@ uility_room_light:
   door_sensor: binary_sensor.utility_room_door_sensor_contact
   # How long to leave the light on before turning it off automatically, in seconds.
   delay: 1800
+
+light_cycle:
+  module: light_cycle
+  class: LightCycle

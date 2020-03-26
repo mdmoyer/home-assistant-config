@@ -309,5 +309,9 @@ input_select:
       - Normal
       - Nighttime
 
+input_boolean:
+  light_cycle:
+    name: Rainbow Lights
+
 group: !include groups.yaml
 automation: !include automation.yaml
