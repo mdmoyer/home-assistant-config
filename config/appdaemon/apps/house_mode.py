@@ -36,7 +36,7 @@ class HouseMode(hass.Hass):
         self.select_option("input_select.temp_reg", self.const.TEMP_REG_NORMAL)
 
     def update_home_status_callback(self, entity, attribute, old, new, kwargs):
-        self.log("Person: " entity + ": "+ old + " --> " + new)
+        self.log("Person: " + entity + ": "+ old + " --> " + new)
         # Change house_mode to Away if everyone is away.
         if self.noone_home():
             self.log("No one is home")
