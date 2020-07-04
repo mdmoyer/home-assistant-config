@@ -6,7 +6,7 @@ excluded_entities:
 resources:
   - url: /local/circle-sensor-card.js?v=1
     type: module
-  - url: /local/thermostat-element.js?v=QQQ460100QQQ
+  - url: /local/thermostat-element.js?v=QQQ507183QQQ
     type: module
 
 views:
@@ -15,7 +15,7 @@ views:
     cards:
       - type: picture-elements
         # title: '1st Floor'
-        image: /local/floorplan-main.svg?v=QQQ460100QQQ
+        image: /local/floorplan-main.svg?v=QQQ507183QQQ
         elements:
           # Weather
           - type: state-label
@@ -142,7 +142,7 @@ views:
           # None
       - type: picture-elements
         # title: 'Basement'
-        image: /local/floorplan-basement.svg?v=QQQ460100QQQ
+        image: /local/floorplan-basement.svg?v=QQQ507183QQQ
         elements:
           # Lights
           - type: state-icon
@@ -166,6 +166,48 @@ views:
             style:
               top: 81.25%
               left: 71.52%
+          - type: state-icon # Basement West 1
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 18.94%
+              left: 44.42%
+          - type: state-icon # Basement West 2
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 18.94%
+              left: 59.42%
+          - type: state-icon # Basement West 3
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 18.94%
+              left: 74.42%
+          - type: state-icon # Basement West 4
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 30.09%
+              left: 44.42%
+          - type: state-icon # Basement West 5
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 30.09%
+              left: 59.42%
+          - type: state-icon # Basement West 6
+            tap_action:
+              action: toggle
+            entity: light.basement_dimmer
+            style:
+              top: 30.09%
+              left: 74.42%
           # Media Players
           - type: state-icon
             tap_action:
@@ -188,51 +230,10 @@ views:
               top: 49.60%
               left: 64.35%
           # Inactive
-          - type: icon # Basement 1
-            icon: mdi:lightbulb
-            style:
-              top: 18.94%
-              left: 44.42%
-              color: gray
-              opacity: 0.5
-          - type: icon # Basement 2
-            icon: mdi:lightbulb
-            style:
-              top: 18.94%
-              left: 59.42%
-              color: gray
-              opacity: 0.5
-          - type: icon # Basement 3
-            icon: mdi:lightbulb
-            style:
-              top: 18.94%
-              left: 74.42%
-              color: gray
-              opacity: 0.5
-          - type: icon # Basement 4
-            icon: mdi:lightbulb
-            style:
-              top: 30.09%
-              left: 44.42%
-              color: gray
-              opacity: 0.5
-          - type: icon # Basement 5
-            icon: mdi:lightbulb
-            style:
-              top: 30.09%
-              left: 59.42%
-              color: gray
-              opacity: 0.5
-          - type: icon # Basement 6
-            icon: mdi:lightbulb
-            style:
-              top: 30.09%
-              left: 74.42%
-              color: gray
-              opacity: 0.5
+          ###
       - type: picture-elements
         # title: 'Upstairs'
-        image: /local/floorplan-upstairs.svg?v=QQQ460100QQQ
+        image: /local/floorplan-upstairs.svg?v=QQQ507183QQQ
         elements:
           # Service Buttons
           # USe this for more advanced Input Select business.
